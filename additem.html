@@ -14,7 +14,9 @@
            <fieldset>
                 <legend> New Board </legend>
                 <ul>
-                    <li>
+                    <li> <label for="Brand">Brand: </label> <input type="text" id="brand"</li>
+					
+					<li>
 						<label for="Category">Category: </label>
 						<select id="Category">
 							<option value="Pool">Pool</option>
@@ -26,10 +28,8 @@
 							
 						</select>
 					</li>
-					<li> <label for="Brand">Brand: </label> <input type="text" id="brand"</li>
-					<li>
-						<label for="Width">Width: </label>
-						<input type="text" id="width"</li>
+					<li>Width:
+						<input type="range" name="inches" min="5" max="12" id="width"</li>
 					<li>Bearing Type:
 						<ul>
 							<li><input type="radio" checked value="ABEC 5" id="ABEC 5" name="bearing" /> <label for="ABEC5">ABEC 5</label></li>
@@ -47,8 +47,9 @@
 							<li><input type="checkbox" value="Risers" id="Risers"/> <label for="Risers">Risers</label></li>
 						</ul>
 					</li>
+					<li> <label for="Manufacturer's Date">Manufacturer's Date: </label> <input type="date" id="date"</li>
 					<li> <label for="Notes">Notes: </label> <textarea id="notes"></textarea></li>
-					
+					<li> <input type="hidden" value="true" /> </li>
                 </ul>
                 
            </fieldset> 
