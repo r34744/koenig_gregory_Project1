@@ -15,7 +15,7 @@
 		<h1>Add a Board</h1>
 		<p>Bought a new board? Let's add it to your collection.</p>
 		
-        <form action="" method="post" >
+        <form action="" method="post" id="addaBoard">
            <fieldset>
                 <legend> New Board </legend>
                 <ul>
@@ -45,10 +45,11 @@
 					<li> <label for="truckBrand">Truck Brand: </label> <input type="text" id="truckBrand"</li>
 					<li>Other Accessories:
 						<ul>
-							<li><input type="checkbox" value="Rails" id="Rails" /> <label for="Rails">Rails</label></li>
-							<li><input type="checkbox" value="Lappers" id="Lappers" /> <label for="Lappers">Lappers</label></li>
-							<li><input type="checkbox" value="Tail Guard" id="TailGuard" /> <label for="Tail Guard">Tail Guard</label></li>
-							<li><input type="checkbox" value="Risers" id="Risers"/> <label for="Risers">Risers</label></li>
+							<li><input type="checkbox" value="Rails" id="Rails" name="accessories"/> <label for="Rails">Rails</label></li>
+							<li><input type="checkbox" value="Lappers" id="Lappers" name="accessories"/> <label for="Lappers">Lappers</label></li>
+							<li><input type="checkbox" value="Tail Guard" id="TailGuard" name="accessories"/> <label for="Tail Guard">Tail Guard</label></li>
+							<li><input type="checkbox" value="Risers" id="Risers" name="accessories"/> <label for="Risers">Risers</label></li>
+							<li><input type="checkbox" value="Other" id="OtherAcc" name="accessories"/> <label for="Other">Other</label></li>
 						</ul>
 					</li>
 					<li> <label for="date">Manufacturer's Date: </label> <input type="date" id="date"</li>
@@ -58,11 +59,11 @@
                 
            </fieldset> 
         
-		<input type="submit" value="Add a Board" />   
+		<input type="button" value="Add a Board" id="submitbutton"/>   
         </form>
 		<a href="#">Clear Form</a>
 		<a href="#">Display Boards</a>
-		
+		<script src="js/main.js" type="text/javascript"></script>
 	</body>
 	
 </html>
