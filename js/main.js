@@ -30,7 +30,9 @@ var manuDate = document.getElementById("date");
 var notes = document.getElementById("notes");
 var createLi = document.createElement("li");
 var createUl = document.createElement("ul");
-var createOption = document.createElement("option");
+var accessories;
+       
+       
 
 
 //Create more categories
@@ -38,6 +40,7 @@ var categoryAdds = ["Vintage", "Novelty", "Art Piece"];
 for (i=0, j=categoryAdds.length; i<j; i++) {
     var createOption = document.createElement("option");
     createOption.innerHTML = categoryAdds[i];
+    createOption.value = categoryAdds[i];
     accessCategory.appendChild(createOption);    
 }
 
@@ -46,7 +49,8 @@ for (i=0, j=categoryAdds.length; i<j; i++) {
 var getAccessories = function(){
     for (i=0, j=accessChecked.length; i<j; i++){
         if(accessChecked[i].checked){
-            console.log(accessChecked[i].value);
+            return accessChecked[i];
+            
         }
     }
     
@@ -56,15 +60,32 @@ var getAccessories = function(){
 var getBearingRating = function(){
     for (i=0, j=bearingType.length; i<j; i++){
         if(bearingType[i].checked){
-            console.log(bearingType[i].value);
+            return bearingType[i];
         }
     }
     
 }
 
 
-var getBrand = function(){
-    console.log(boardBrand.value);
+//Get the data into storage!
+var getData = function(){
+    localStorage.setItem("Board Brand", boardBrand.value);
+    localStorage.setItem("Category", accessCategory.value);
+    localStorage.setItem("Width", boardWidth.value);
+    localStorage.setItem("Accessories", accessories.value);
+    localStorage.setItem("Bearings", getBearingRating);
+    localStorage.setItem("Trucks", truckBrand.value);
+    localStorage.setItem("Manufacturer's Date", manuDate.value);
+    localStorage.setItem("Notes", notes.value);
 }
 
-submitbutton.addEventListener("click", getBrand);
+
+
+
+submitbutton.addEventListener("click", getData);
+
+
+
+
+
+
