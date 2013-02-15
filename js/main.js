@@ -19,12 +19,30 @@
     .appendChild("string");
     
 */
+//Getting the form variables //
 var boardBrand = document.getElementById("brand");
-var createUl = document.createElement("ul");
-var createLi = document.createElement("li");
+var accessCategory = document.getElementById("addaBoard").Category;
+var boardWidth = document.getElementById("width");
+var bearingType = document.getElementById("addaBoard").bearing;
+var truckBrand = document.getElementById("truckBrand");
 var accessChecked = document.getElementById("addaBoard").accessories;
+var manuDate = document.getElementById("date");
+var notes = document.getElementById("notes");
+var createLi = document.createElement("li");
+var createUl = document.createElement("ul");
+var createOption = document.createElement("option");
 
-/* Get the value of the check boxes */
+
+//Create more categories
+var categoryAdds = ["Vintage", "Novelty", "Art Piece"];
+for (i=0, j=categoryAdds.length; i<j; i++) {
+    var createOption = document.createElement("option");
+    createOption.innerHTML = categoryAdds[i];
+    accessCategory.appendChild(createOption);    
+}
+
+
+// Get the value of the check boxes
 var getAccessories = function(){
     for (i=0, j=accessChecked.length; i<j; i++){
         if(accessChecked[i].checked){
@@ -34,8 +52,19 @@ var getAccessories = function(){
     
 }
 
+//get value of Bearing radio buttons
+var getBearingRating = function(){
+    for (i=0, j=bearingType.length; i<j; i++){
+        if(bearingType[i].checked){
+            console.log(bearingType[i].value);
+        }
+    }
+    
+}
+
+
 var getBrand = function(){
     console.log(boardBrand.value);
 }
 
-submitbutton.addEventListener("click", getAccessories);
+submitbutton.addEventListener("click", getBrand);

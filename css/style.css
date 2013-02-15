@@ -39,6 +39,7 @@ form{
     background-color: rgb(241,231,210);
     margin: 20px;
     padding: 20px;
+    border-radius:15px;
 }
 
 legend{
@@ -46,7 +47,7 @@ legend{
     font-weight: bold; 
     font-size: 30px;
     text-align: center;
-     
+    
 }
 
 a{
@@ -69,5 +70,6 @@ a{
     display: block;
     width: 300px;
     height: 100px;
+    
 }
 
