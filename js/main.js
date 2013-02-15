@@ -34,10 +34,6 @@ var getAccessories = function(){
     
 }
 
-
-
-
-
 var getBrand = function(){
     console.log(boardBrand.value);
 }
