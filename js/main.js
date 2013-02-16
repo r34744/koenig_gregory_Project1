@@ -101,12 +101,6 @@ window.addEventListener("DOMContentLoaded", function() {
     }
     
     
-    //clear data from storage
-    var clearData = function(){
-        localStorage.clear();
-        
-    }
-    
     //togglecontrols
     var toggleControls = function(n){
         switch(n){
@@ -133,6 +127,9 @@ window.addEventListener("DOMContentLoaded", function() {
     //put data to the browser
     var getData = function(){
         toggleControls("on");
+        if(localStorage.length ===0){
+            alert("Ya gotta add a board first!");
+        }
         var makeDiv = document.createElement("div");
         makeDiv.setAttribute("id", "NewBoards");
         var makeList = document.createElement("ul");
@@ -158,12 +155,24 @@ window.addEventListener("DOMContentLoaded", function() {
         
     }
     
+    var clearData = function(){
+        if(localStorage.length === 0){
+            alert ("There is no data to clear.")
+            
+        }else{
+            localStorage.clear();
+            alert ("All boards deleted.");
+            window.location.reload();
+            return false;
+        }
+        
+    }
     
     //form button actions
     var submitbutton = GetID("submitbutton");
     submitbutton.addEventListener("click", saveData);
     var clearButton = GetID("clearButton");
-    //clearButton.addEventListener("click", clearData);
+    clearButton.addEventListener("click", clearData);
     var displayBoards = GetID("displayBoards");
     displayBoards.addEventListener("click", getData);
 
