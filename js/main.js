@@ -31,23 +31,24 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
     //Getting the form variables //
-    var accessCategory = document.getElementById("addaBoard").Category;
-    var boardWidth = document.getElementById("width");
-    var bearingType = document.getElementById("addaBoard").bearing;
-    var truckBrand = document.getElementById("truckBrand");
-    var accessChecked = document.getElementById("addaBoard").accessories;
-    var manuDate = document.getElementById("date");
-    var notes = document.getElementById("notes");
-    var createLi = document.createElement("li");
-    var createUl = document.createElement("ul");
+    var accessCategory = GetID("addaBoard").Category;
+    var boardWidth = GetID("width");
+    var bearingType = GetID("addaBoard").bearing;
+    var truckBrand = GetID("truckBrand");
+    var accessChecked = GetID("addaBoard").accessories;
+    var manuDate = GetID("date");
+    var notes = GetID("notes");
+    var createLi = GetID("li");
+    var createUl = GetID("ul");
     var accessories;
     var bearingValue;
     var accessoryValue;
-           
-    
+     
+    var deleteCategoryItems = accessCategory;
+    deleteCategoryItems.innerHTML="";
     
     //Create more categories
-    var categoryAdds = ["Vintage", "Novelty", "Art Piece"];
+    var categoryAdds = ["Vintage", "Novelty", "Art Piece", "Rider"];
     for (i=0, j=categoryAdds.length; i<j; i++) {
         var createOption = document.createElement("option");
         createOption.innerHTML = categoryAdds[i];
