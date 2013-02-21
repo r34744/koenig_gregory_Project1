@@ -213,7 +213,49 @@ window.addEventListener("DOMContentLoaded", function() {
         GetID("truckBrand").value = object.trucks[1];
         GetID("date").value = object.manudate[1];
         GetID("notes").value = object.notes[1];
+        
+        //Remove listener from 
+        saveBoard.removeEventListener("click", saveData);
+        //Change Submit button value to Edit Button
+        GetID("submitbutton").value = "Edit Board";
+        var editSubmitButton = GetID("submit");
+        
+        //Save key value as a property of the EditSubmitButton
+        editSubmitButton.addEventListener("click", validateForm);
+        editSubmit.key = this.key;
     }
+    
+    var validateForm = function(e){
+        //define elements to check
+        var getBoardName = GetID("brand");
+        
+        //Reset error messages
+        GetID("errors").innerHTML = "";
+        getBoardName.style.border = "1px solid black";
+        
+        //Get error messages
+        var errorArray = [];
+        if (getBoardName.value == ""){
+            var getBoardNameError = ("Please give this board a name");
+            getBoardName.style.border = "1px solid red";
+            errorArray.push(getBoardNameError);
+        }
+        
+        //display errors on the screen
+        if(errorArray.length >=1){
+            for(i=0, j=errorArray.length; i<j; i++){
+                var text = document.createElement("li");
+                text.innerHTML = errorArray[i];
+                GetID("errors").appendChild(text);
+            }
+            e.preventDefault();
+            return false;
+        }else{
+            getData();
+        }
+        
+    }
+    
     
     var clearData = function(){
         if(localStorage.length === 0){
@@ -241,13 +283,13 @@ window.addEventListener("DOMContentLoaded", function() {
     
     
     //form button actions
-    var submitbutton = GetID("submitbutton");
-    submitbutton.addEventListener("click", saveData);
-    var clearButton = GetID("clearButton");
-    clearButton.addEventListener("click", clearData);
     var displayBoards = GetID("displayBoards");
     displayBoards.addEventListener("click", getData);
-
+    var clearButton = GetID("clearButton");
+    clearButton.addEventListener("click", clearData);
+    var saveBoard = GetID("submitbutton");
+    saveBoard.addEventListener("click", validateForm);
+    
 
 
 } );

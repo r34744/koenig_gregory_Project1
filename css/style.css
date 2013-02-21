@@ -90,3 +90,9 @@ div ul li ul{
     
 }
 
+#errors li{
+    font-family: Arial;
+    font-size: 15px;
+    font-style: italic;
+    color: red;
+}
