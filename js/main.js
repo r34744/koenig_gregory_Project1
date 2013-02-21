@@ -197,13 +197,17 @@ window.addEventListener("DOMContentLoaded", function() {
         GetID('Category').value = object.category[1];
         GetID('width').value = object.width[1];
         for (i=0, j=bearingType.length; i<j; i++){
-            if(bearingType[i].checked){
-                object.bearing[i].setAttribute("checked");
+            if(bearingType[i].value == object.bearing[1]){
+                bearingType[i].setAttribute("checked", "checked");
+            }else{
+                bearingType[i].removeAttribute("checked")
             }
         }
         for (i=0, j=accessChecked.length; i<j; i++){
-            if(accessChecked[i].checked){
-                object.accessories[i].setAttribute("checked");
+            if(accessChecked[i].value == object.accessories[i]){
+                accessChecked[i].setAttribute("checked", "checked");
+            }else{
+                accessChecked[i].removeAttribute("checked");
             }
         }
         GetID("truckBrand").value = object.trucks[1];
