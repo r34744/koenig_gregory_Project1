@@ -135,10 +135,11 @@ window.addEventListener("DOMContentLoaded", function() {
         makeDiv.setAttribute("id", "NewBoards");
         var makeList = document.createElement("ul");
         makeDiv.appendChild(makeList);
-        document.body.appendChild(makeList);
+        document.body.appendChild(makeDiv);
         //GetID("NewBoards").style.display = "block";
         for (var i=0, j=localStorage.length; i<j; i++) {
             var makeLi = document.createElement("li");
+            var editLinks = document.createElement("li");
             makeList.appendChild(makeLi);
             var key = localStorage.key(i);
             var value = localStorage.getItem(key);
@@ -151,9 +152,63 @@ window.addEventListener("DOMContentLoaded", function() {
                 makeSubList.appendChild(makeSubLi);
                 var optSubText = object[n][0] + " " + object[n][1];
                 makeSubLi.innerHTML = optSubText;
+                makeSubList.appendChild(editLinks);
             }
+            makeEditLinks(localStorage.key(i), editLinks); //creates the edit links for each item
+            
         }
         
+    }
+    
+    //creates the edit links for each item
+    var makeEditLinks = function(key, editLinks){
+        var editItemLink = document.createElement ("a");
+        editItemLink.href = "#";
+        editItemLink.key = key;
+        var editBoardText = "Edit Board";
+        editItemLink.addEventListener("click", editBoard);
+        editItemLink.innerHTML = editBoardText;
+        editLinks.appendChild(editItemLink);
+        
+        //add break
+        var breakTag = document.createElement("br");
+        editLinks.appendChild(breakTag);
+        
+        var deleteBoard = document.createElement("a");
+        deleteBoard.href = "#";
+        deleteBoard.key = key;
+        var deleteBoardText = "Delete Board";
+        //deleteBoard.addEventListener("click", deleteBoard);
+        deleteBoard.innerHTML = deleteBoardText;
+        editLinks.appendChild(deleteBoard);
+        
+    }
+    
+    
+    var editBoard = function(){
+        var value = localStorage.getItem(this.key);
+        var object = JSON.parse(value);
+        
+        //show the form
+        toggleControls("off"); 
+        
+        //populate the form
+        GetID('brand').value = object.board[1];
+        GetID('Category').value = object.category[1];
+        GetID('width').value = object.width[1];
+        for (i=0, j=bearingType.length; i<j; i++){
+            if(bearingType[i].checked){
+                object.bearing[i].setAttribute("checked");
+            }
+        }
+        for (i=0, j=accessChecked.length; i<j; i++){
+            if(accessChecked[i].checked){
+                object.accessories[i].setAttribute("checked");
+            }
+        }
+        GetID("truckBrand").value = object.trucks[1];
+        GetID("date").value = object.manudate[1];
+        GetID("notes").value = object.notes[1];
     }
     
     var clearData = function(){
@@ -168,6 +223,18 @@ window.addEventListener("DOMContentLoaded", function() {
         }
         
     }
+    
+    //check form inputs
+    var checkBoardInput =function(){
+        valid=true
+        if(document.addaBoard.brand.value === ""){
+        alert ("Please fill in the board name.");
+        valid=false;
+        }
+        return valid;
+    }
+    
+    
     
     //form button actions
     var submitbutton = GetID("submitbutton");

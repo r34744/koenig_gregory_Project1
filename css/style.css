@@ -73,3 +73,20 @@ a{
     
 }
 
+div{
+    background-color: rgb(241,231,210);
+    margin: 20px;
+    padding: 20px;
+    border-radius:15px;
+    
+}
+
+
+div ul li ul{
+    background-color: white;
+    margin: 0px;
+    padding: 50px ;
+    border-radius:15px;
+    
+}
+
