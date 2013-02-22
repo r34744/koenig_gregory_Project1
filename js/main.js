@@ -81,8 +81,15 @@ window.addEventListener("DOMContentLoaded", function() {
     
     
     //Get the data into storage!
-    var saveData = function(){
-        var id = Math.floor(Math.random()*100000000);
+    function saveData(key){
+        //if no key create a new one.
+        if(!key) {
+            var id = Math.floor(Math.random()*100000000);
+            //if same set it as the old.
+        }else{
+            id = key;
+        }
+        
         //Get form fields and put in object
         //Object will contain value and input
         getAccessories();
@@ -178,12 +185,22 @@ window.addEventListener("DOMContentLoaded", function() {
         deleteBoard.href = "#";
         deleteBoard.key = key;
         var deleteBoardText = "Delete Board";
-        //deleteBoard.addEventListener("click", deleteBoard);
+        deleteBoard.addEventListener("click", deleteSingleBoard);
         deleteBoard.innerHTML = deleteBoardText;
         editLinks.appendChild(deleteBoard);
         
     }
     
+    var deleteSingleBoard = function(){
+        var ask=confirm("Delete board?");
+        if (ask){
+            localStorage.removeItem(this.key);
+            window.location.reload();
+        }else{
+            alert("Board not deleted");
+        }
+        
+    }
     
     var editBoard = function(){
         var value = localStorage.getItem(this.key);
@@ -204,7 +221,8 @@ window.addEventListener("DOMContentLoaded", function() {
             }
         }
         for (i=0, j=accessChecked.length; i<j; i++){
-            if(accessChecked[i].value == object.accessories[i]){
+            var accessValue = object.accessories[1];
+            if(accessValue[i] == "checked"){
                 accessChecked[i].setAttribute("checked", "checked");
             }else{
                 accessChecked[i].removeAttribute("checked");
@@ -218,11 +236,11 @@ window.addEventListener("DOMContentLoaded", function() {
         saveBoard.removeEventListener("click", saveData);
         //Change Submit button value to Edit Button
         GetID("submitbutton").value = "Edit Board";
-        var editSubmitButton = GetID("submit");
+        var editSubmitButton = GetID("submitbutton");
         
         //Save key value as a property of the EditSubmitButton
         editSubmitButton.addEventListener("click", validateForm);
-        editSubmit.key = this.key;
+        editSubmitButton.key = this.key;
     }
     
     var validateForm = function(e){
@@ -251,7 +269,9 @@ window.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
             return false;
         }else{
-            getData();
+            //Save data. Send key value.
+            // this value was passed through the editSubmitButton listener
+            saveData(this.key);
         }
         
     }
@@ -279,7 +299,6 @@ window.addEventListener("DOMContentLoaded", function() {
         }
         return valid;
     }
-    
     
     
     //form button actions
