@@ -81,7 +81,7 @@ window.addEventListener("DOMContentLoaded", function() {
     
     
     //Get the data into storage!
-    function saveData(key){
+    var saveData = function (key){
         //if no key create a new one.
         if(!key) {
             var id = Math.floor(Math.random()*100000000);
@@ -117,6 +117,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 GetID("clearButton").style.display = "inline";
                 GetID("displayBoards").style.display = "none";
                 GetID("addNew").style.display = "inline";
+                
                 break;
             case "off":
                 GetID("addaBoard").style.display = "block";
@@ -127,42 +128,6 @@ window.addEventListener("DOMContentLoaded", function() {
                 break;
             default:
                 return false;
-        }
-        
-    }
-    
-    
-    //put data to the browser
-    var getData = function(){
-        toggleControls("on");
-        if(localStorage.length ===0){
-            alert("Ya gotta add a board first!");
-        }
-        var makeDiv = document.createElement("div");
-        makeDiv.setAttribute("id", "NewBoards");
-        var makeList = document.createElement("ul");
-        makeDiv.appendChild(makeList);
-        document.body.appendChild(makeDiv);
-        //GetID("NewBoards").style.display = "block";
-        for (var i=0, j=localStorage.length; i<j; i++) {
-            var makeLi = document.createElement("li");
-            var editLinks = document.createElement("li");
-            makeList.appendChild(makeLi);
-            var key = localStorage.key(i);
-            var value = localStorage.getItem(key);
-            //connecting string in localstorage to an object
-            var object = JSON.parse(value);
-            var makeSubList = document.createElement("ul");
-            makeLi.appendChild(makeSubList);
-            for ( var n in object ){
-                var makeSubLi = document.createElement("li");
-                makeSubList.appendChild(makeSubLi);
-                var optSubText = object[n][0] + " " + object[n][1];
-                makeSubLi.innerHTML = optSubText;
-                makeSubList.appendChild(editLinks);
-            }
-            makeEditLinks(localStorage.key(i), editLinks); //creates the edit links for each item
-            
         }
         
     }
@@ -202,6 +167,43 @@ window.addEventListener("DOMContentLoaded", function() {
         
     }
     
+    //put data to the browser
+    var getData = function(){
+        toggleControls("on");
+        if(localStorage.length ===0){
+            alert("Ya gotta add a board first!");
+        }
+        var makeDiv = document.createElement("div");
+        makeDiv.setAttribute("id", "NewBoards");
+        var makeList = document.createElement("ul");
+        makeDiv.appendChild(makeList);
+        document.body.appendChild(makeDiv);
+        GetID("NewBoards").style.display = "block";
+        for (var i=0, j=localStorage.length; i<j; i++) {
+            var makeLi = document.createElement("li");
+            var editLinks = document.createElement("li");
+            makeList.appendChild(makeLi);
+            var key = localStorage.key(i);
+            var value = localStorage.getItem(key);
+            //connecting string in localstorage to an object
+            var object = JSON.parse(value);
+            var makeSubList = document.createElement("ul");
+            makeLi.appendChild(makeSubList);
+            for ( var n in object ){
+                var makeSubLi = document.createElement("li");
+                makeSubList.appendChild(makeSubLi);
+                var optSubText = object[n][0] + " " + object[n][1];
+                makeSubLi.innerHTML = optSubText;
+                makeSubList.appendChild(editLinks);
+            }
+            makeEditLinks(localStorage.key(i), editLinks); //creates the edit links for each item
+            
+        }
+        
+    }
+    
+    
+    
     var editBoard = function(){
         var value = localStorage.getItem(this.key);
         var object = JSON.parse(value);
@@ -234,8 +236,8 @@ window.addEventListener("DOMContentLoaded", function() {
         
         //Remove listener from 
         saveBoard.removeEventListener("click", saveData);
-        //Change Submit button value to Edit Button
-        GetID("submitbutton").value = "Edit Board";
+        //Change Submit button value to Save Changes Button
+        GetID("submitbutton").value = "Save Changes";
         var editSubmitButton = GetID("submitbutton");
         
         //Save key value as a property of the EditSubmitButton
