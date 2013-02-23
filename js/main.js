@@ -67,7 +67,7 @@ window.addEventListener("DOMContentLoaded", function() {
             }
         }
         
-    }
+    };
     
     //get value of Bearing radio buttons
     var getBearingRating = function(){
@@ -77,14 +77,15 @@ window.addEventListener("DOMContentLoaded", function() {
             }
         }
         
-    }
+    };
     
     
     //Get the data into storage!
     var saveData = function (key){
         //if no key create a new one.
+        var id;
         if(!key) {
-            var id = Math.floor(Math.random()*100000000);
+            id = Math.floor(Math.random()*100000000);
             //if same set it as the old.
         }else{
             id = key;
@@ -106,7 +107,7 @@ window.addEventListener("DOMContentLoaded", function() {
             //save data into local storage using stringify.
             localStorage.setItem(id, JSON.stringify(formItem));
             alert("Board is saved");
-    }
+    };
     
     
     //togglecontrols
@@ -130,7 +131,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 return false;
         }
         
-    }
+    };
     
     //creates the edit links for each item
     var makeEditLinks = function(key, editLinks){
@@ -154,7 +155,7 @@ window.addEventListener("DOMContentLoaded", function() {
         deleteBoard.innerHTML = deleteBoardText;
         editLinks.appendChild(deleteBoard);
         
-    }
+    };
     
     var deleteSingleBoard = function(){
         var ask=confirm("Delete board?");
@@ -165,7 +166,7 @@ window.addEventListener("DOMContentLoaded", function() {
             alert("Board not deleted");
         }
         
-    }
+    };
     
     //put data to the browser
     var getData = function(){
@@ -200,7 +201,7 @@ window.addEventListener("DOMContentLoaded", function() {
             
         }
         
-    }
+    };
     
     
     
@@ -219,9 +220,9 @@ window.addEventListener("DOMContentLoaded", function() {
             if(bearingType[i].value == object.bearing[1]){
                 bearingType[i].setAttribute("checked", "checked");
             }else{
-                bearingType[i].removeAttribute("checked")
+                bearingType[i].removeAttribute("checked");
             }
-        }
+        };
         for (i=0, j=accessChecked.length; i<j; i++){
             var accessValue = object.accessories[1];
             if(accessValue[i] == "checked"){
@@ -229,7 +230,7 @@ window.addEventListener("DOMContentLoaded", function() {
             }else{
                 accessChecked[i].removeAttribute("checked");
             }
-        }
+        };
         GetID("truckBrand").value = object.trucks[1];
         GetID("date").value = object.manudate[1];
         GetID("notes").value = object.notes[1];
@@ -243,7 +244,7 @@ window.addEventListener("DOMContentLoaded", function() {
         //Save key value as a property of the EditSubmitButton
         editSubmitButton.addEventListener("click", validateForm);
         editSubmitButton.key = this.key;
-    }
+    };
     
     var validateForm = function(e){
         //define elements to check
@@ -255,7 +256,7 @@ window.addEventListener("DOMContentLoaded", function() {
         
         //Get error messages
         var errorArray = [];
-        if (getBoardName.value == ""){
+        if (getBoardName.value === ""){
             var getBoardNameError = ("Please give this board a name");
             getBoardName.style.border = "1px solid red";
             errorArray.push(getBoardNameError);
@@ -276,7 +277,7 @@ window.addEventListener("DOMContentLoaded", function() {
             saveData(this.key);
         }
         
-    }
+    };
     
     
     var clearData = function(){
@@ -290,7 +291,7 @@ window.addEventListener("DOMContentLoaded", function() {
             return false;
         }
         
-    }
+    };
     
     //check form inputs
     var checkBoardInput =function(){
@@ -300,7 +301,7 @@ window.addEventListener("DOMContentLoaded", function() {
         valid=false;
         }
         return valid;
-    }
+    };
     
     
     //form button actions
