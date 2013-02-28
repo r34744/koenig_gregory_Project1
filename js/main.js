@@ -217,20 +217,32 @@ window.addEventListener("DOMContentLoaded", function() {
         GetID('Category').value = object.category[1];
         GetID('width').value = object.width[1];
         for (i=0, j=bearingType.length; i<j; i++){
-            if(bearingType[i].value == object.bearing[1]){
+            if(bearingType[i].value === object.bearing[1]){
                 bearingType[i].setAttribute("checked", "checked");
             }else{
                 bearingType[i].removeAttribute("checked");
             }
         };
         for (i=0, j=accessChecked.length; i<j; i++){
+            if(accessChecked[i].value === object.accessories[1][i]){
+                accessChecked[i].setAttribute("checked", "checked");
+                
+            }else{
+                accessChecked[i].removeAttribute("checked");
+            }
+            
+        };
+        
+         /*for (i=0, j=accessChecked.length; i<j; i++){
             var accessValue = object.accessories[1];
-            if(accessValue[i] == "checked"){
+            if(accessValue[i] === "checked"){
                 accessChecked[i].setAttribute("checked", "checked");
             }else{
                 accessChecked[i].removeAttribute("checked");
             }
         };
+        */
+        
         GetID("truckBrand").value = object.trucks[1];
         GetID("date").value = object.manudate[1];
         GetID("notes").value = object.notes[1];
