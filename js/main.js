@@ -48,7 +48,7 @@ window.addEventListener("DOMContentLoaded", function() {
     deleteCategoryItems.innerHTML="";
     
     //Create more categories
-    var categoryAdds = ["Vintage", "Novelty", "Art Piece", "Rider"];
+    var categoryAdds = ["Vintage", "Novelty", "Art", "Rider"];
     for (i=0, j=categoryAdds.length; i<j; i++) {
         var createOption = document.createElement("option");
         createOption.innerHTML = categoryAdds[i];
@@ -172,7 +172,8 @@ window.addEventListener("DOMContentLoaded", function() {
     var getData = function(){
         toggleControls("on");
         if(localStorage.length ===0){
-            alert("Ya gotta add a board first!");
+            alert("Ya gotta add a board first - default data added!");
+            defaultFillData();
         }
         var makeDiv = document.createElement("div");
         makeDiv.setAttribute("id", "NewBoards");
@@ -190,6 +191,7 @@ window.addEventListener("DOMContentLoaded", function() {
             var object = JSON.parse(value);
             var makeSubList = document.createElement("ul");
             makeLi.appendChild(makeSubList);
+            getCategoryImage(object.category[1], makeSubList);
             for ( var n in object ){
                 var makeSubLi = document.createElement("li");
                 makeSubList.appendChild(makeSubLi);
@@ -204,6 +206,25 @@ window.addEventListener("DOMContentLoaded", function() {
     };
     
     
+    function getCategoryImage(catName, makeSubList){
+        var imageLineItem = document.createElement('p');
+        makeSubList.appendChild(imageLineItem);
+        var newImage = document.createElement('img');
+        var setSource = newImage.setAttribute("src", "img/"+ catName +".png");
+        var setID = newImage.setAttribute("id", "deckpic");
+        imageLineItem.appendChild(newImage);
+        
+    }
+    
+    //Default data load = json.js
+    function defaultFillData(){
+        for ( var n in json){
+            var id = Math.floor(Math.random()*100000000);
+            localStorage.setItem(id, JSON.stringify(json[n]));
+        }
+        
+        
+    };
     
     var editBoard = function(){
         var value = localStorage.getItem(this.key);
