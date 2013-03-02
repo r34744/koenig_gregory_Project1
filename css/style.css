@@ -57,7 +57,6 @@ legend{
 a{
     font-family: Arial;
     font-size: 15px;
-    font-style: italic;
     color: black;
     text-align: center;
     
@@ -155,4 +154,26 @@ ul, menu, dir {
     text-align: left;
     color: red;
     
+}
+
+#clearButton{
+    background-color: white;
+    border-radius:5px;
+    padding: 5px;
+    border: 1px;
+}
+
+#displayBoards{
+    background-color: white;
+    border-radius:5px;
+    padding: 5px;
+    border: thin;
+   
+}
+
+#addNew{
+    background-color: white;
+    border-radius:5px;
+    padding: 5px;
+    border: 1px;
 }
