@@ -7,8 +7,9 @@
 h1{
     font-family: Arial;
     font-size: 50px;
-    line-height: 30px;
+    line-height: 25px;
     text-align: center;
+    color: white;
    
 }
 
@@ -31,8 +32,11 @@ label{
    /* display: block; */
 }
 
-body{
-    background-color: rgb(217,198,157);
+body { 
+    background-image:url("../img/oldboard_back.jpg");
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
 }
 
 form{
