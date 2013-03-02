@@ -136,6 +136,7 @@ window.addEventListener("DOMContentLoaded", function() {
     //creates the edit links for each item
     var makeEditLinks = function(key, editLinks){
         var editItemLink = document.createElement ("a");
+        editItemLink.setAttribute("class", "editlinks");
         editItemLink.href = "#";
         editItemLink.key = key;
         var editBoardText = "Edit Board";
@@ -148,6 +149,7 @@ window.addEventListener("DOMContentLoaded", function() {
         editLinks.appendChild(breakTag);
         
         var deleteBoard = document.createElement("a");
+        deleteBoard.setAttribute("class", "editlinks");
         deleteBoard.href = "#";
         deleteBoard.key = key;
         var deleteBoardText = "Delete Board";
@@ -177,21 +179,30 @@ window.addEventListener("DOMContentLoaded", function() {
         }
         var makeDiv = document.createElement("div");
         makeDiv.setAttribute("id", "NewBoards");
-        var makeList = document.createElement("ul");
-        makeDiv.appendChild(makeList);
+        /*var makeList = document.createElement("ul");
+        makeDiv.appendChild(makeList);*/
         document.body.appendChild(makeDiv);
         GetID("NewBoards").style.display = "block";
         for (var i=0, j=localStorage.length; i<j; i++) {
-            var makeLi = document.createElement("li");
+            /*var makeLi = document.createElement("li");*/
             var editLinks = document.createElement("li");
-            makeList.appendChild(makeLi);
+            /*makeDiv.appendChild(makeLi);*/
             var key = localStorage.key(i);
             var value = localStorage.getItem(key);
             //connecting string in localstorage to an object
             var object = JSON.parse(value);
+            
+            var newBoard = document.createElement('div');
+            makeDiv.appendChild(newBoard);
+            newBoard.setAttribute("class", "newBoard");
+            getCategoryImage(object.category[1], newBoard);
+            var boardSpecs = document.createElement('div');
+            newBoard.appendChild(boardSpecs);
+            boardSpecs.setAttribute("class", "boardSpecs");
+            
             var makeSubList = document.createElement("ul");
-            makeLi.appendChild(makeSubList);
-            getCategoryImage(object.category[1], makeSubList);
+            boardSpecs.appendChild(makeSubList);
+            
             for ( var n in object ){
                 var makeSubLi = document.createElement("li");
                 makeSubList.appendChild(makeSubLi);
@@ -199,6 +210,13 @@ window.addEventListener("DOMContentLoaded", function() {
                 makeSubLi.innerHTML = optSubText;
                 makeSubList.appendChild(editLinks);
             }
+            /*for ( var n in object ){
+                var makeSubLi = document.createElement("li");
+                makeSubList.appendChild(makeSubLi);
+                var optSubText = object[n][0] + " " + object[n][1];
+                makeSubLi.innerHTML = optSubText;
+                makeSubList.appendChild(editLinks);
+            }*/
             makeEditLinks(localStorage.key(i), editLinks); //creates the edit links for each item
             
         }
@@ -206,12 +224,13 @@ window.addEventListener("DOMContentLoaded", function() {
     };
     
     
-    function getCategoryImage(catName, makeSubList){
-        var imageLineItem = document.createElement('p');
-        makeSubList.appendChild(imageLineItem);
+    function getCategoryImage(catName, newBoard){
+        var imageLineItem = document.createElement('div');
+        newBoard.appendChild(imageLineItem);
+        imageLineItem.setAttribute("class", "boardPicture");
         var newImage = document.createElement('img');
         var setSource = newImage.setAttribute("src", "img/"+ catName +".png");
-        var setID = newImage.setAttribute("id", "deckpic");
+        var setID = newImage.setAttribute("class", "deckpic");
         imageLineItem.appendChild(newImage);
         
     }
